@@ -2,6 +2,7 @@ package com.bank.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,25 +11,37 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bank.model.Client;
 import com.bank.servis.IServiceClient;
 
+import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api")
+
+@RequiredArgsConstructor
+@RequestMapping("/clients")
 public class ClientController {
-	@Autowired
-	IServiceClient service;
+	private final IServiceClient service;
 	
-	@GetMapping("/clients")
+	@GetMapping("/findAll")
 	public Flux<Client> getClient(){
 		return service.findAll();
 	}
 	
-	@PostMapping("/postclient")
+	@PostMapping("/save")
 	Mono<Client> postClient(@RequestBody Client client)
 	{
 		return service.save(client);
 	}
+	@PostMapping("/update")
+	public Mono<Client> saveProduct(@RequestBody Client client){
+		
+		return service.save(client);
+	}
 	
+	@PostMapping("/delete/{id}")
+	void deleteProduct(@PathVariable String id){
+		
+		service.deleteById(id);
+	}
 
 }

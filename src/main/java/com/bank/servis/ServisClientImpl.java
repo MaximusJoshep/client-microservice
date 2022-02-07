@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bank.model.Client;
+
 import com.bank.repository.ClientRepository;
 
 import reactor.core.publisher.Flux;
@@ -25,5 +26,24 @@ public class ServisClientImpl implements IServiceClient {
 		// TODO Auto-generated method stub
 		return repository.save(client);
 	}
+	
+	@Override
+	public Mono<Client> findProductById(String id) {
+		// TODO Auto-generated method stub
+		return repository.findById(id);
+	}
+
+	@Override
+	public Mono<Client> update(Client product) {
+		// TODO Auto-generated method stub
+		return repository.save(product);
+	}
+
+	@Override
+	public void deleteById(String id) {
+		// TODO Auto-generated method stub
+		repository.deleteById(id).subscribe();
+	}
+
 
 }
