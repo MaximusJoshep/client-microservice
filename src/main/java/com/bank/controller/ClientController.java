@@ -43,5 +43,10 @@ public class ClientController {
 		
 		service.deleteById(id);
 	}
+	
+	@GetMapping("/findbyid/{id}")
+	public Mono<Client> findById(@PathVariable String id){
+		return service.findClienttById(id);
+	}
 
 }

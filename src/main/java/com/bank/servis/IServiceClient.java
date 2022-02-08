@@ -13,5 +13,8 @@ public interface IServiceClient {
 	 Mono<Client> update(Client product);
 	 void deleteById(String id);
 	 
+	 
+	 //
+	 Mono<Client> findClienttById(String id);
 
 }

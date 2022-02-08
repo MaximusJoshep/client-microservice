@@ -45,5 +45,11 @@ public class ServisClientImpl implements IServiceClient {
 		repository.deleteById(id).subscribe();
 	}
 
+	@Override
+	public Mono<Client> findClienttById(String id) {
+		// TODO Auto-generated method stub
+		return repository.findById(id);
+	}
+
 
 }
