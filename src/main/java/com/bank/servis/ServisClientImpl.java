@@ -7,13 +7,15 @@ import com.bank.model.Client;
 
 import com.bank.repository.ClientRepository;
 
+
+import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
+@RequiredArgsConstructor
 @Service
 public class ServisClientImpl implements IServiceClient {
-	@Autowired
-	ClientRepository repository;
+	
+	private final ClientRepository repository;
 
 	@Override
 	public Flux<Client> findAll() {
